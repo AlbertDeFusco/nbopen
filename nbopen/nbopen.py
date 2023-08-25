@@ -3,6 +3,8 @@
 import argparse
 import os.path
 import webbrowser
+import requests
+from pathlib import Path
 
 from notebook import notebookapp
 from notebook.utils import url_path_join, url_escape
@@ -76,7 +78,14 @@ def main(argv=None):
     else:
         filename = args.filename
 
-    nbopen(filename)
+    if filename.startswith('anaconda://'):
+        res = requests.get(filename.replace('anaconda://', 'https://'))
+        if res.ok:
+            with open('from-remote.ipynb', 'wb') as f:
+                f.write(res.content)
+            nbopen('from-remote.ipynb')
+    else:
+        nbopen(filename)
 
 if __name__ == '__main__':
     main()

@@ -14,6 +14,8 @@ with winreg.CreateKey(winreg.HKEY_CURRENT_USER, "Software\Classes\.ipynb") as k:
     winreg.SetValueEx(k, "PerceivedType", 0, SZ, "document")
     with winreg.CreateKey(k, "OpenWithProgIds") as openwith:
         winreg.SetValueEx(openwith, "Jupyter.nbopen", 0, winreg.REG_NONE, b'')
+    winreg.setValue(k, "", SZ, "URL:anaconda")
+    winreg.SetValueEx(k, "URL Protocol", 0, SZ, "")
 
 executable = sys.executable
 if executable.endswith("python.exe"):
