@@ -14,16 +14,18 @@ with winreg.CreateKey(winreg.HKEY_CURRENT_USER, "Software\Classes\.ipynb") as k:
     winreg.SetValueEx(k, "PerceivedType", 0, SZ, "document")
     with winreg.CreateKey(k, "OpenWithProgIds") as openwith:
         winreg.SetValueEx(openwith, "Jupyter.nbopen", 0, winreg.REG_NONE, b'')
-    winreg.setValue(k, "", SZ, "URL:anaconda")
-    winreg.SetValueEx(k, "URL Protocol", 0, SZ, "")
+
 
 executable = sys.executable
 if executable.endswith("python.exe"):
     executable = executable[:-10] + 'pythonw.exe'
 launch_cmd = '"{}" -m nbopen "%1"'.format(executable)
 
-with winreg.CreateKey(winreg.HKEY_CURRENT_USER, "Software\Classes\Jupyter.nbopen") as k:
-    winreg.SetValue(k, "", SZ, "IPython notebook")
+#with winreg.CreateKey(winreg.HKEY_CURRENT_USER, "Software\Classes\Jupyter.nbopen") as k:
+with winreg.CreateKey(winreg.HKEY_CURRENT_USER, "Software\Classes\\anaconda") as k:
+    #winreg.SetValue(k, "", SZ, "IPython notebook")
+    winreg.SetValue(k, "", SZ, "URI:anaconda Protocol")
+    winreg.SetValueEx(k, "URL Protocol", 0, SZ, "")
     with winreg.CreateKey(k, "shell\open\command") as launchk:
         winreg.SetValue(launchk, "", SZ, launch_cmd)
 

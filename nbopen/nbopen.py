@@ -81,9 +81,10 @@ def main(argv=None):
     if filename.startswith('anaconda://'):
         res = requests.get(filename.replace('anaconda://', 'https://'))
         if res.ok:
-            with open('from-remote.ipynb', 'wb') as f:
+            path = os.path.expanduser("~/Desktop/from-remote.ipynb")
+            with open(path, 'wb') as f:
                 f.write(res.content)
-            nbopen('from-remote.ipynb')
+            nbopen(path)
     else:
         nbopen(filename)
 
