@@ -40,6 +40,7 @@ setup(name='nbopen',
         #   'packages': ['nbopen'],
           'plist': Plist,
           'alias': True,
+          'redirect_stdout_to_asl': True
         #   'dylib_excludes': ['zmq'],
         #   'iconfile': 'nbopen.icns',
       }},

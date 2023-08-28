@@ -9,22 +9,17 @@ build:
   number: 0
 
 requirements:
-  # build:
-  #   - flit
-  host:
+  build:
     - python
     - pip
     - flit
     - py2app # [osx]
-    - notebook
-    - nbformat
-    - requests
+    - notebook # [osx]
   run:
     - python
-    - notebook
+    - notebook <7
     - nbformat
     - requests
-    - py2app # [osx]
 
 about:
   license: BSD-3-Clause
