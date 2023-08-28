@@ -78,10 +78,13 @@ def main(argv=None):
     else:
         filename = args.filename
 
-    if filename.startswith('anaconda://'):
-        res = requests.get(filename.replace('anaconda://', 'https://'))
+    if filename.startswith('anaconda-org-notebook://'):
+        _, nb = filename.split("://")
+        fn = f"{os.path.basename(nb)}.ipynb"
+        url = f"https://notebooks.anaconda.org/{nb}/download"
+        res = requests.get(url)
         if res.ok:
-            path = os.path.expanduser("~/Desktop/from-remote.ipynb")
+            path = os.path.expanduser(f"~/Desktop/{fn}")
             with open(path, 'wb') as f:
                 f.write(res.content)
             nbopen(path)

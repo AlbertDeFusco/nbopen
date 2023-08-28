@@ -11,6 +11,7 @@ description-file = "README.rst"
 requires = [
     "notebook",
     "nbformat",
+    "requests"
 ]
 requires-python = ">=3.5"
 classifiers = [

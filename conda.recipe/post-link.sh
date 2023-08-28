@@ -1,0 +1,1 @@
+codesign -fs - --preserve-metadata=entitlements $PREFIX/nbopen.app

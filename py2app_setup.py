@@ -17,8 +17,15 @@ Plist = dict(CFBundleName='nbopen',
                                  CFBundleTypeName="IPython Notebook",
                                  CFBundleTypeIconFile="nbopen",
                                  CFBundleTypeRole="Editor"),
-                            ]
+                            ],
+        CFBundleURLTypes=[
+            dict(CFBundleURLName="AnacondaLocalNotebooks",
+                 CFBundleURLSchemes=["anaconda-org-notebook"])
+        ]
      )
+
+import os
+app = os.path.join(os.environ["PREFIX"], 'bin', 'nbopen')
 
 setup(name='nbopen',
       version=nbopen.__version__,
@@ -26,13 +33,15 @@ setup(name='nbopen',
       author='Thomas Kluyver',
       author_email="thomas@kluyver.me.uk",
       url="https://github.com/takluyver/nbopen",
-      app=['nbopen.py'],  # FIXME: What should this be, py2app users?
+    #   app=['nbopen/nbopen.py'],
+      app=[app],
       options={'py2app': {
           'argv_emulation': True,
-          'packages': ['nbopen'],
-          'alias': True,
+        #   'packages': ['nbopen'],
           'plist': Plist,
-          'iconfile': 'nbopen.icns'
+          'alias': True,
+        #   'dylib_excludes': ['zmq'],
+        #   'iconfile': 'nbopen.icns',
       }},
       setup_requires=['py2app']
 )

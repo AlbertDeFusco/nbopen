@@ -1,0 +1,31 @@
+package:
+  name: nbopen
+  version: 0.6.0
+
+source:
+  path: ..
+
+build:
+  number: 0
+
+requirements:
+  # build:
+  #   - flit
+  host:
+    - python
+    - pip
+    - flit
+    - py2app # [osx]
+    - notebook
+    - nbformat
+    - requests
+  run:
+    - python
+    - notebook
+    - nbformat
+    - requests
+    - py2app # [osx]
+
+about:
+  license: BSD-3-Clause
+  license_file: LICENSE
