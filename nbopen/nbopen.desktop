@@ -8,3 +8,11 @@ Exec={PYTHON} -m nbopen %f
 Terminal=false
 MimeType=application/x-ipynb+json;
 Icon=jupyter
+
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Jupyter Notebook launcher
+Exec={PYTHON} -m nbopen %u
+Terminal=true
+MimeType=x-scheme-handler/anaconda-org-notebook;
